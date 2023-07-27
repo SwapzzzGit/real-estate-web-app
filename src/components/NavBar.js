@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -15,10 +16,10 @@ const NavBar = () => {
           <a href="#">Sell</a>
         </li>
         <li>
-          <a href="#">Login</a>
+          <Link to="/login">Login</Link>
         </li>
         <li>
-          <a href="#">Sign Up</a>
+          <Link to="/signup">Sign Up</Link>
         </li>
       </ul>
     </StyledNav>

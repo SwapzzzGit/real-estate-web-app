@@ -1,5 +1,6 @@
 import React from "react";
 import home from "../img/home.png";
+import NavBar from "../components/NavBar";
 
 //import Styled
 import styled from "styled-components";
@@ -7,6 +8,7 @@ import styled from "styled-components";
 const HomePage = () => {
   return (
     <MainHome>
+      <NavBar />
       <Image>
         <img src={home} alt="home homepage" />
       </Image>
