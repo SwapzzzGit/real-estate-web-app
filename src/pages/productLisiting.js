@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Dropdown from "../components/dropdown";
 import NavBar from "../components/NavBar";
 
 const url =
@@ -8,13 +9,13 @@ const url =
 const ProductListing = () => {
   const [properties, setProperties] = useState([]);
   const [search, setSearch] = useState("");
-
+  const [filteredProperties, setFilteredProperties] = useState([]); // 1. #1 State Variable for filtering the property search
   const fetchPropertiesData = () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setProperties(data.data);
-        console.log(data.data);
+        // console.log(data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -29,24 +30,59 @@ const ProductListing = () => {
     setSearch(e.target.value);
   };
 
-  const searchedProperties = properties.filter((property) => {
-    return (
-      property.city.toLowerCase().includes(search.toLowerCase()) ||
-      property.state.toLowerCase().includes(search.toLowerCase())
-    );
-  });
+  //1. #2 Function for filtering the property search
+  const handleSearchButtonClick = () => {
+    const searchedProperties = properties.filter((property) => {
+      return (
+        property.city.toLowerCase().includes(search.toLowerCase()) ||
+        property.state.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    setFilteredProperties(searchedProperties);
+  };
+  // 2. #1 Seach even after hitting "Enter key"
+  const handleEnterKey = (e) => {
+    if (e.key === "Enter") {
+      handleSearchButtonClick();
+    }
+  };
 
+  const handleSuggestionClick = (city) => {
+    setSearch(city);
+    handleSearchButtonClick();
+  };
+
+  const propertySuggestions = properties
+    .filter((property) => {
+      return (
+        property.city.toLowerCase().startsWith(search.toLowerCase()) ||
+        property.state.toLowerCase().startsWith(search.toLowerCase())
+      );
+    })
+    .slice(0, 5);
+  //console.log(propertySuggestions);
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={handleSearch}
-        placeholder="Search by City"
-      />
+      <div>
+        <input
+          type="text"
+          list="suggestions"
+          value={search}
+          onChange={handleSearch}
+          placeholder="Search by City"
+          onKeyDown={handleEnterKey} //2. #2 handleEnterKey function triggers when we hit "Enter key" */
+        />
+        <Dropdown
+          suggestions={propertySuggestions}
+          handleSuggestionClick={handleSuggestionClick}
+        />
 
-      {searchedProperties.length > 0 &&
-        searchedProperties.map((property) => (
+        <button onClick={handleSearchButtonClick}>Search</button>
+        {/*1. #3 Button for filtered the property search*/}
+      </div>
+
+      {filteredProperties.length > 0 &&
+        filteredProperties.map((property) => (
           <Card key={property.id}>
             <img src={property.homeMainPic} alt="Property" />
             <p>Street Address: {property.address}</p>
@@ -83,5 +119,4 @@ const Card = styled.div`
     height: auto;
   }
 `;
-
 export default ProductListing;

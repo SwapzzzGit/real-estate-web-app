@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebase";
+import GoogleSign from "./googleSignIn";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,14 +12,21 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = e.target.elements;
     try {
-      signInWithEmailAndPassword(auth, email.value, password.value);
+      const userCredentails = await signInWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      );
       setLogin(true);
+      const user = userCredentails.user;
+      console.log(user);
+      localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       alert(error.message);
     }
   };
   if (login) {
-    return navigate("/signup");
+    return navigate("/listings");
   }
   return (
     <>
@@ -30,6 +38,7 @@ const Login = () => {
         <input type="password" placeholder="Password" name="password" />
         <button type="submit">Submit</button>
       </form>
+      <GoogleSign />
     </>
   );
 };

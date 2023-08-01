@@ -4,6 +4,7 @@ import HomePage from "./pages/homePage";
 import GlobalStyles from "./components/GlobalStyles";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import LogOut from "./components/LogOut";
 import ProductListing from "./pages/productLisiting";
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/a" element={<ProductListing />} />
+        <Route path="/logout" element={<LogOut />} />
+        <Route path="/listings" element={<ProductListing />} />
       </Routes>
     </div>
   );
