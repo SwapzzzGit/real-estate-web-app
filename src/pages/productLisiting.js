@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Dropdown from "../components/dropdown";
 import NavBar from "../components/NavBar";
+import Pagination from "../components/pagination";
 
 const url =
   "https://script.googleusercontent.com/macros/echo?user_content_key=7Unh1kAyAOZ6F8noo69HbStgYELO7SuGQoojhP2w35LWUHtWLRRLi16WTy4NkT-RF_p-s2tQZ5j7vudGmk5NzfV82RDSxuXym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLj4JCqQhfZE9tDCyL0DsaDvKfWJJkz_bHpsIQJQVpvOA7ljR2sCK6FuWDVWN13hQBmSiiBxXJBxolW0w1Xz8msRJb3Q5XrcdA&lib=MePB_WRytVvz23dr296_xE9QXSiohcWGh";
