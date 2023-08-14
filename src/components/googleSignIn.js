@@ -15,32 +15,20 @@ const GoogleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         // const credential = GoogleAuthProvider.credentialFromResult(result);
-
         const user = result.user;
-
         localStorage.setItem("user", JSON.stringify(user));
-
         setSignIn(true);
       })
       .catch((error) => {
         // console.error(error.code)
-
         // console.error(error.message)
-
         // console.error(error.customData.email)
-
         // console.error(GoogleAuthProvider)
-
         const errorCode = error.code;
-
         const errorMessage = error.message;
-
         // The email of the user's account used.
-
         const email = error.customData.email;
-
         // The AuthCredential type that was used.
-
         // const credential = GoogleAuthProvider.credentialFromError(error);
       });
   };

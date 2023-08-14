@@ -4,22 +4,32 @@ const Dropdown = ({ suggestions, handleSuggestionClick }) => {
   console.log(suggestions);
 
   const uniqueStates = new Set(
+    suggestions.map((item) => `${item.state.toLowerCase()}`)
+  );
+  const uniqueCities = new Set(
     suggestions.map((item) => `${item.city.toLowerCase()}`)
   );
 
-  const stateOptions = Array.from(uniqueStates).slice(0, 6);
+  // console.log(uniqueStates)
 
+  const stateOptions = Array.from(uniqueStates).slice(0, 6);
+  const cityOptions = Array.from(uniqueCities).slice(0, 6);
+  const arr = stateOptions.concat(cityOptions);
+  console.log(arr);
+
+  // console.log(stateOptions)
   return (
     <datalist id="suggestions">
-      {stateOptions.map((suggestion) => {
-        console.log(suggestion); // Add this line to log each suggestion
+      {arr.map((suggestion) => {
+        // console.log(suggestion)
+        // console.log(suggestion); // Add this line to log each suggestion
         return (
           <option
-            key={suggestion.id}
-            value={suggestion.city}
-            onClick={() => handleSuggestionClick(suggestion.city)}
+            // key={id}
+            value={suggestion}
+            onClick={() => handleSuggestionClick(suggestion)}
           >
-            {suggestion.city}
+            {suggestion}
           </option>
         );
       })}

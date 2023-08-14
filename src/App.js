@@ -1,11 +1,12 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import GlobalStyles from "./components/GlobalStyles";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import LogOut from "./components/LogOut";
 import ProductListing from "./pages/productLisiting";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -16,7 +17,11 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<LogOut />} />
-        <Route path="/listings" element={<ProductListing />} />
+        {/* Use the ProtectedRoute component for the /listings route */}
+        <Route
+          path="/listings"
+          element={ProductListing} // Pass the component itself, not an object
+        />
       </Routes>
     </div>
   );

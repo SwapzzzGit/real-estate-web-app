@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Dropdown from "../components/dropdown";
 import Pagination from "../components/pagination";
 import NavBar from "../components/NavBar";
+import ProfileDropdown from "../components/profileDropdown";
 
 const url =
   "https://script.googleusercontent.com/macros/echo?user_content_key=7Unh1kAyAOZ6F8noo69HbStgYELO7SuGQoojhP2w35LWUHtWLRRLi16WTy4NkT-RF_p-s2tQZ5j7vudGmk5NzfV82RDSxuXym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLj4JCqQhfZE9tDCyL0DsaDvKfWJJkz_bHpsIQJQVpvOA7ljR2sCK6FuWDVWN13hQBmSiiBxXJBxolW0w1Xz8msRJb3Q5XrcdA&lib=MePB_WRytVvz23dr296_xE9QXSiohcWGh";
@@ -69,6 +70,9 @@ const ProductListing = () => {
     //Seach Input +Dropdown + Search Button
     <div>
       <div>
+        <NavBar />
+      </div>
+      <div>
         <input
           type="text"
           list="suggestions"
@@ -90,16 +94,4 @@ const ProductListing = () => {
   );
 };
 
-const Card = styled.div`
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  width: 300px;
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-`;
 export default ProductListing;
