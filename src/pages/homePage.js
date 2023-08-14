@@ -9,9 +9,6 @@ const HomePage = () => {
   return (
     <MainHome>
       <NavBar />
-      <Image>
-        <img src={home} alt="home homepage" />
-      </Image>
       <Hide>
         <div className="hide">
           <h2>We Work to make</h2>
@@ -31,16 +28,23 @@ const HomePage = () => {
 };
 
 //Styled Component
-const MainHome = styled.div``;
-const Image = styled.div`
-  img {
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-  }
+const MainHome = styled.div`
+  background-image: url(${home});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  //width: 100vh;
 `;
+// const Image = styled.div`
+//   img {
+//     width: 100%;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     min-height: 100vh;
+//   }
+// `;
 const Hide = styled.div`
   position: absolute;
   top: 175px;

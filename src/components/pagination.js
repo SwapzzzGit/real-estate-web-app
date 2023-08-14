@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 const Pagination = ({ filteredProperties }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +31,7 @@ const Pagination = ({ filteredProperties }) => {
     <div>
       <ul>
         {currentItems.map((property) => (
-          <div>
+          <Card>
             <li key={property.id}></li>
             <img src={property.homeMainPic} alt="Property" />
             <p>Street Address: {property.address}</p>
@@ -49,7 +50,7 @@ const Pagination = ({ filteredProperties }) => {
               <img src={property.Pic4} alt={`Image 4`} />
               <img src={property.Pic5} alt={`Image 5`} />
             </div>
-          </div>
+          </Card>
         ))}
       </ul>
       <button onClick={handlePrevPage} disabled={currentPage === 1}>
@@ -71,6 +72,19 @@ const Pagination = ({ filteredProperties }) => {
     </div>
   );
 };
+const Card = styled.div`
+  min-height: 90vh;
+  background-color: #f2f2f2;
+  border: 5px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  //float: inline-end;
+  img {
+    max-width: 50%;
+    height: auto;
+  }
+`;
 export default Pagination;
 
 {

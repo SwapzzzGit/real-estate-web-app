@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import ProfileDropdown from "../components/profileDropdown";
+import profileIcon from "../img/profileIcon.png";
 
 const NavBar = () => {
   return (
@@ -22,6 +24,8 @@ const NavBar = () => {
           <Link to="/signup">Sign Up</Link>
         </li>
       </ul>
+      <ProfileIcon src={profileIcon} alt="Profile" />
+      <ProfileDropdown />
     </StyledNav>
   );
 };
@@ -30,12 +34,13 @@ const NavBar = () => {
 
 const StyledNav = styled.div`
   min-height: 10vh;
+  border: 5px solid black;
   display: flex;
   margin: auto;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 6rem;
-  position: absolute;
+  //position: absolute;
   a {
     color: black;
     text-decoration: none;
@@ -53,5 +58,13 @@ const StyledNav = styled.div`
     padding-right: 650px;
   }
 `;
+const ProfileIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 
+  &:hover ~ ${ProfileDropdown} {
+    display: block;
+  }
+`;
 export default NavBar;
