@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+>>>>>>> 9f5c1d56f959862d9dd6d190687c375fbb0c0281
 
 const ProfileDropdown = () => {
   return (
@@ -10,7 +13,11 @@ const ProfileDropdown = () => {
         <li>Account Settings</li>
         <li>Saved Homes</li>
         <li>Contact History</li>
+<<<<<<< HEAD
         <Link to="/logout">LogOut</Link>
+=======
+        <li>Logout</li>
+>>>>>>> 9f5c1d56f959862d9dd6d190687c375fbb0c0281
       </ul>
     </Dropdown>
   );
