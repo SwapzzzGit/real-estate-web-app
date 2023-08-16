@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import GlobalStyles from "./components/GlobalStyles";
 import SignUp from "./components/SignUp";
@@ -12,16 +12,13 @@ function App() {
   return (
     <div className="App">
       <GlobalStyles />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<LogOut />} />
-        {/* Use the ProtectedRoute component for the /listings route */}
-        <Route
-          path="/listings"
-          element={ProductListing} // Pass the component itself, not an object
-        />
+        <Route path="/listings" element={<ProductListing />} />
       </Routes>
     </div>
   );

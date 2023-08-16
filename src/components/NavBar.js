@@ -24,13 +24,13 @@ const NavBar = () => {
           <Link to="/signup">Sign Up</Link>
         </li>
       </ul>
-      <ProfileIcon src={profileIcon} alt="Profile" />
+      <StyledProfileIcon src={profileIcon} alt="Profile" />
       <ProfileDropdown />
     </StyledNav>
   );
 };
 
-//Styled Component
+// Styled Component
 
 const StyledNav = styled.div`
   min-height: 10vh;
@@ -40,25 +40,29 @@ const StyledNav = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 6rem;
-  //position: absolute;
+
   a {
     color: black;
     text-decoration: none;
   }
+
   ul {
     display: flex;
     list-style: none;
     justify-content: space-around;
   }
+
   li {
     position: relative;
     padding-left: 6rem;
   }
+
   h1 {
     padding-right: 650px;
   }
 `;
-const ProfileIcon = styled.img`
+
+const StyledProfileIcon = styled.img`
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -67,4 +71,5 @@ const ProfileIcon = styled.img`
     display: block;
   }
 `;
+
 export default NavBar;
