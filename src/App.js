@@ -18,7 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<LogOut />} />
-        <Route path="/listings" element={<ProductListing />} />
+        <Route path="/listings" element={<ProtectedRoute element={ProductListing} />} />
       </Routes>
     </div>
   );
