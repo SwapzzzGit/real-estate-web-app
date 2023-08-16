@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import GlobalStyles from "./components/GlobalStyles";
 import SignUp from "./components/SignUp";
@@ -18,7 +18,10 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<LogOut />} />
-        <Route path="/listings" element={<ProductListing />} />
+        <Route
+          path="/listings"
+          element={<ProtectedRoute element={ProductListing} />}
+        />
       </Routes>
     </div>
   );
