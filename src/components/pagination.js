@@ -53,22 +53,29 @@ const Pagination = ({ filteredProperties }) => {
           </Card>
         ))}
       </ul>
-      <button onClick={handlePrevPage} disabled={currentPage === 1}>
-        Previous
-      </button>
-      <span>{currentPage}</span>
-      {pageNumbers.map((pageNumber) => (
-        <button
-          key={pageNumber}
-          onClick={() => setCurrentPage(pageNumber)}
-          disabled={currentPage === pageNumber}
-        >
-          {pageNumber}
-        </button>
-      ))}
-      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-        Next
-      </button>
+      {filteredProperties.length > 0 && (
+        <>
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>{currentPage}</span>
+          {pageNumbers.map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => setCurrentPage(pageNumber)}
+              disabled={currentPage === pageNumber}
+            >
+              {pageNumber}
+            </button>
+          ))}
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </>
+      )}
     </div>
   );
 };

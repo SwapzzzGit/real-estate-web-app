@@ -1,9 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import auth from "../firebase";
+import { useDispatch } from "react-redux";
+import { logout } from "../state/Actions/actions";
 
 const ProfileDropdown = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        alert(`${user.email} Signout Successfully`);
+        localStorage.removeItem("user");
+        dispatch(logout());
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <Dropdown>
       <Arrow />
@@ -11,19 +30,19 @@ const ProfileDropdown = () => {
         <li>Account Settings</li>
         <li>Saved Homes</li>
         <li>Contact History</li>
-        <Link to="/logout">LogOut</Link>
-
-        <li>Logout</li>
+        <StyledLink to="/" onClick={handleLogOut}>
+          Logout
+        </StyledLink>
       </ul>
     </Dropdown>
   );
 };
 
 const Dropdown = styled.div`
-  position: relative;
+  position: absolute;
   display: inline-block;
-  top: 8.5rem;
-  right: 8rem;
+  top: 2.9rem;
+  right: -1.2rem;
   width: 150px;
   border-radius: 15px;
   background-color: white;
@@ -48,6 +67,20 @@ const Dropdown = styled.div`
         background-color: #f1f1f1;
       }
     }
+  }
+`;
+const StyledLink = styled(Link)`
+  display: block;
+  margin: 4px 4px 4px 4px;
+  padding: 8px 5px 8px 5px;
+  text-align: center;
+  border-radius: 14px;
+  transition: background-color 0.5s ease;
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #f1f1f1;
   }
 `;
 

@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import ProfileDropdown from "../components/profileDropdown";
 import profileIcon from "../img/profileIcon.png";
 
 const NavBar = () => {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
+    useState(false);
+
+  const toggleProfileDropdown = () => {
+    setIsProfileDropdownVisible(!isProfileDropdownVisible);
+  };
+
   return (
-    <StyledNav>
+    <StyledNav isAuthenticated={isAuthenticated}>
       <h1>
         <a href="#">Haily Dior</a>
       </h1>
@@ -17,24 +26,33 @@ const NavBar = () => {
         <li>
           <a href="#">Sell</a>
         </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/signup">Sign Up</Link>
-        </li>
+        {!isAuthenticated && (
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
+          </>
+        )}
       </ul>
-      <StyledProfileIcon src={profileIcon} alt="Profile" />
-      <ProfileDropdown />
+      {isAuthenticated && (
+        <StyledProfileIconContainer>
+          <StyledProfileIcon
+            src={profileIcon}
+            alt="Profile"
+            onClick={toggleProfileDropdown}
+          />
+          {isProfileDropdownVisible && <ProfileDropdown />}
+        </StyledProfileIconContainer>
+      )}
     </StyledNav>
   );
 };
 
-// Styled Component
-
 const StyledNav = styled.div`
-  min-height: 10vh;
-  border: 5px solid black;
+  min-height: ${({ isAuthenticated }) => (isAuthenticated ? "12vh" : "10vh")};
   display: flex;
   margin: auto;
   justify-content: space-between;
@@ -42,7 +60,7 @@ const StyledNav = styled.div`
   padding: 1rem 6rem;
 
   a {
-    color: black;
+    color: white;
     text-decoration: none;
   }
 
@@ -62,14 +80,15 @@ const StyledNav = styled.div`
   }
 `;
 
+const StyledProfileIconContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+`;
+
 const StyledProfileIcon = styled.img`
   width: 30px;
   height: 30px;
-  cursor: pointer;
-
-  &:hover ~ ${ProfileDropdown} {
-    display: block;
-  }
 `;
 
 export default NavBar;

@@ -4,6 +4,7 @@ import Dropdown from "../components/dropdown";
 import Pagination from "../components/pagination";
 import NavBar from "../components/NavBar";
 import ProfileDropdown from "../components/profileDropdown";
+import listingCover from "../img/listingCover.jpg";
 
 const url =
   "https://script.googleusercontent.com/macros/echo?user_content_key=7Unh1kAyAOZ6F8noo69HbStgYELO7SuGQoojhP2w35LWUHtWLRRLi16WTy4NkT-RF_p-s2tQZ5j7vudGmk5NzfV82RDSxuXym5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLj4JCqQhfZE9tDCyL0DsaDvKfWJJkz_bHpsIQJQVpvOA7ljR2sCK6FuWDVWN13hQBmSiiBxXJBxolW0w1Xz8msRJb3Q5XrcdA&lib=MePB_WRytVvz23dr296_xE9QXSiohcWGh";
@@ -68,11 +69,11 @@ const ProductListing = () => {
   //console.log(propertySuggestions);
   return (
     //Seach Input +Dropdown + Search Button
-    <div>
+    <ListStyle>
       <div>
         <NavBar />
       </div>
-      <div>
+      <InputBox>
         <input
           type="text"
           list="suggestions"
@@ -88,10 +89,61 @@ const ProductListing = () => {
 
         <button onClick={handleSearchButtonClick}>Search</button>
         {/*1. #3 Button for filtered the property search*/}
-      </div>
+      </InputBox>
       <Pagination filteredProperties={filteredProperties} />
-    </div>
+    </ListStyle>
   );
 };
+
+const ListStyle = styled.div`
+  background-image: url("https://www.zillowstatic.com/bedrock/app/uploads/sites/5/2023/07/1920w%402x_nationalbrand.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  color: rgb(42, 42, 51);
+  display: block;
+  font-size: 15px;
+  height: 488px;
+  left: 0px;
+  line-height: 22.5px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-x: hidden;
+`;
+
+const InputBox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  input {
+    padding: 1.6rem;
+    appearance: none;
+    background-color: rgb(246, 246, 250);
+    border-bottom-color: rgb(0, 106, 255);
+    border-bottom-left-radius: 4px;
+    /* ... other input styles ... */
+  }
+
+  button {
+    padding: 1.6rem;
+    appearance: none;
+    background-color: rgb(0, 106, 255);
+    color: white;
+    border: none;
+    border-bottom-left-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem; /* Add some space between input and button */
+  }
+`;
 
 export default ProductListing;
